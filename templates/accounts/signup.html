@@ -1,0 +1,33 @@
+{% block title %}Signup Page{% endblock %}
+
+{% block content %}
+<div class="card-auth-card">
+    <h1>Create an Account</h1>
+
+    <form method="post" class="styled-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form %}
+        <p>
+            <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+            </label>
+
+            {{ field }}
+
+            {% if field.help_text %}
+            <small class="muted">
+                {{ field.help_text }}
+            </small>
+            {% endif %}
+
+            {{ field.errors }}
+        </p>
+        {% endfor %}
+
+        <button type="submit" class="btn">SIGNUP</button>
+    </form>
+</div>
+
+{% endblock %}
